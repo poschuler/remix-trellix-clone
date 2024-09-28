@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/libsql";
-import { createClient } from "@libsql/client";
+import { createClient } from "@libsql/client/http";
 import * as schema from "./scheme/schema.server";
 
 if (!process.env.TURSO_DATABASE_URL) {
