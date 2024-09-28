@@ -3,9 +3,9 @@ import { Link, useFetchers, useLoaderData } from "@remix-run/react";
 import clsx from "clsx";
 import invariant from "tiny-invariant";
 import { buttonVariants } from "~/components/ui/button";
-import { getBoard } from "~/queries/board";
-import { createColumn, deleteColumn } from "~/queries/column";
-import { createItem, deleteItem, updateItemColumn } from "~/queries/item";
+import { getBoard } from "~/queries/board.server";
+import { createColumn, deleteColumn } from "~/queries/column.server";
+import { createItem, deleteItem, updateItemColumn } from "~/queries/item.server";
 import { RenderColumn, RenderColumnType } from "~/routes/boards_.$id/column";
 import { CreateColumn } from "~/routes/boards_.$id/create-column";
 import { FETCHER_KEYS, INTENTS } from "~/routes/boards_.$id/types";
@@ -76,7 +76,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
             boardId: numberBoardId,
         });
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        //await new Promise((resolve) => setTimeout(resolve, 2000));
         return { ok: true };
     }
 
@@ -86,7 +86,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
         invariant(typeof columnId === "string", "Expected id to be a string");
         invariant(columnId !== "", "columnId is required");
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        //await new Promise((resolve) => setTimeout(resolve, 2000));
 
         await deleteColumn(columnId);
         return { ok: true };
@@ -111,7 +111,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
         const numberOrder = Number(order);
         invariant(!isNaN(numberOrder), "order must be a number");
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        //await new Promise((resolve) => setTimeout(resolve, 2000));
 
         await createItem({
             id: itemId,
@@ -129,7 +129,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
         invariant(typeof itemId === "string", "Expected id to be a string");
         invariant(itemId !== "", "itemId is required");
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        //await new Promise((resolve) => setTimeout(resolve, 2000));
 
         await deleteItem(itemId);
         return { ok: true };
@@ -152,7 +152,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
         const numberOrder = Number(order);
         invariant(!isNaN(numberOrder), "order must be a number");
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        //await new Promise((resolve) => setTimeout(resolve, 2000));
 
         await updateItemColumn(itemId, columnId, numberOrder);
         return { ok: true };

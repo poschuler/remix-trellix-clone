@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { CustomTextField } from "~/components/ui/textfield";
-import { createBoard, deleteBoard, getBoards } from "~/queries/board";
+import { createBoard, deleteBoard, getBoards } from "~/queries/board.server";
 import { unstable_data as data } from "@remix-run/node";
 import invariant from "tiny-invariant";
 

@@ -1,4 +1,6 @@
-import { prisma } from "~/db/db.server";
+import { eq } from "drizzle-orm";
+import { db } from "~/db/db.server";
+import { items } from "~/db/scheme/schema.server";
 
 export async function createItem({
   id,
@@ -11,24 +13,21 @@ export async function createItem({
   order: number;
   columnId: string;
 }) {
-  const column = await prisma.item.create({
-    data: {
+  const [column] = await db
+    .insert(items)
+    .values({
       id,
       columnId,
       content,
       order,
-    },
-  });
+    })
+    .returning();
 
   return column;
 }
 
 export async function deleteItem(id: string) {
-  const column = await prisma.item.delete({
-    where: {
-      id,
-    },
-  });
+  const [column] = await db.delete(items).where(eq(items.id, id)).returning();
 
   return column;
 }
@@ -38,14 +37,14 @@ export async function updateItemColumn(
   columnId: string,
   order: number
 ) {
-  const column = await prisma.item.update({
-    where: {
-      id,
-    },
-    data: {
+  const [column] = await db
+    .update(items)
+    .set({
       columnId,
       order,
-    },
-  });
+    })
+    .where(eq(items.id, id))
+    .returning();
+
   return column;
 }
