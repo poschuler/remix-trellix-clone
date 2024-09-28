@@ -35,11 +35,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         <div className="flex min-h-screen min-w-full w-fit flex-col">
           <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-            <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-
-            </nav>
+            {/* <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+              
+            </nav> */}
             <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-
+              Trello Drag and Drop Clone Demo
             </div>
           </header>
           <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10">

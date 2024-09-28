@@ -5,7 +5,7 @@ import { useOnClickOutside } from "usehooks-ts";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { CustomTextField } from "~/components/ui/textfield";
-import { FETCHER_KEYS, INTENTS } from "~/routes/board.$id/types";
+import { FETCHER_KEYS, INTENTS } from "~/routes/boards_.$id/types";
 
 type CreateColumnProps = {
     boardId: number;

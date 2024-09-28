@@ -3,9 +3,9 @@ import { useFetcher, useFetchers, useSubmit } from "@remix-run/react";
 import { Trash } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
-import { CreateItem } from "~/routes/board.$id/create-item";
-import { RenderItem, RenderItemType } from "~/routes/board.$id/item";
-import { FETCHER_KEYS, INTENTS } from "~/routes/board.$id/types";
+import { CreateItem } from "~/routes/boards_.$id/create-item";
+import { RenderItem, RenderItemType } from "~/routes/boards_.$id/item";
+import { FETCHER_KEYS, INTENTS } from "~/routes/boards_.$id/types";
 import { useDrop } from 'react-aria'
 import { useRef } from "react";
 import type { TextDropItem } from 'react-aria';
@@ -31,9 +31,6 @@ export function RenderColumn({ id, name, items, isOptimistic }: RenderColumnProp
     const mapItems = new Map<string, RenderItemType>();
 
     for (const item of [...items.map(item => { return { ...item, isOptimistic: false } }), ...pendingItems]) {
-        if (mapItems.has(item.id)) {
-            continue;
-        }
         mapItems.set(item.id, item);
     }
 
@@ -74,7 +71,7 @@ export function RenderColumn({ id, name, items, isOptimistic }: RenderColumnProp
 
 
     return isDeleting ? null : (
-        <Card className={clsx("w-[280px] h-full", isDropTarget ? "border-primary" : "")} ref={ref} {...dropProps}>
+        <Card className={clsx("w-[280px] h-full", isDropTarget ? "border-4 border-primary" : "")} ref={ref} {...dropProps}>
             <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                     <p className="flex-grow">{name}</p>
@@ -109,9 +106,6 @@ export function RenderColumn({ id, name, items, isOptimistic }: RenderColumnProp
 }
 
 function usePendingItems({ columnId }: { columnId: string }) {
-
-    // console.log('${FETCHER_KEYS.moveItem}-${columnId}', `${FETCHER_KEYS.moveItem}-${columnId}`);
-    // console.log('useFetchers()', useFetchers().filter((fetcher) => fetcher.key.startsWith(`${FETCHER_KEYS.createItem}-${columnId}`) || fetcher.key.startsWith(`${FETCHER_KEYS.moveItem}-${columnId}`)));
 
     const pendingItems =
         useFetchers()

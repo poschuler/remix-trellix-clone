@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { Button } from "~/components/ui/button";
 import { CustomTextField } from "~/components/ui/textfield";
-import { FETCHER_KEYS, INTENTS } from "~/routes/board.$id/types";
+import { FETCHER_KEYS, INTENTS } from "~/routes/boards_.$id/types";
 
 type CreateItemProps = {
     columnId: string;

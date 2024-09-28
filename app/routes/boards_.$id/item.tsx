@@ -1,7 +1,7 @@
 import { useFetcher, useFetchers, useSubmit } from "@remix-run/react";
 import { Trash } from "lucide-react";
 import { Button } from "~/components/ui/button";
-import { FETCHER_KEYS, INTENTS } from "~/routes/board.$id/types";
+import { FETCHER_KEYS, INTENTS } from "~/routes/boards_.$id/types";
 import { Item } from "@prisma/client";
 import { Card, CardContent } from "~/components/ui/card";
 import { useDrag, useDrop } from 'react-aria'
@@ -94,8 +94,8 @@ export function RenderItem({ id, isOptimistic, content, prevOrder, nextOrder, or
     return (isDeleting || isMoving) ? null : (
 
         <Card className={clsx("py-4",
-            isDropTarget && dropPosition === 'top' && "border-0 border-t-2 border-primary",
-            isDropTarget && dropPosition === 'bottom' && "border-0 border-b-2 border-primary",
+            isDropTarget && dropPosition === 'top' && "border-0 border-t-4 border-primary",
+            isDropTarget && dropPosition === 'bottom' && "border-0 border-b-4 border-primary",
         )} {...dropProps} {...dragProps} ref={ref} >
             <CardContent className="px-3 py-0">
                 <div className="flex justify-between">

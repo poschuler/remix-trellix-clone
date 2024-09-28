@@ -1,13 +1,14 @@
 import { ActionFunctionArgs, unstable_data as data, LoaderFunctionArgs } from "@remix-run/node";
-import { useFetchers, useLoaderData } from "@remix-run/react";
+import { Link, useFetchers, useLoaderData } from "@remix-run/react";
 import clsx from "clsx";
 import invariant from "tiny-invariant";
+import { buttonVariants } from "~/components/ui/button";
 import { getBoard } from "~/queries/board";
 import { createColumn, deleteColumn } from "~/queries/column";
 import { createItem, deleteItem, updateItemColumn } from "~/queries/item";
-import { RenderColumn, RenderColumnType } from "~/routes/board.$id/column";
-import { CreateColumn } from "~/routes/board.$id/create-column";
-import { FETCHER_KEYS, INTENTS } from "~/routes/board.$id/types";
+import { RenderColumn, RenderColumnType } from "~/routes/boards_.$id/column";
+import { CreateColumn } from "~/routes/boards_.$id/create-column";
+import { FETCHER_KEYS, INTENTS } from "~/routes/boards_.$id/types";
 
 export async function loader({ params }: LoaderFunctionArgs) {
     const { id: boardId } = params;
@@ -19,8 +20,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
     invariant(numberBoardId > 0, "Id must be greater than 0");
 
     const board = await getBoard(numberBoardId);
-
-
 
     if (!board) {
         throw data("Not Found",
@@ -42,10 +41,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
             }))
         }))
     };
-
-    // newBoard.columns.map(column => {
-    //     console.log(column.items);
-    // })
 
     return { board: newBoard };
 }
@@ -187,8 +182,11 @@ export default function Board() {
 
     return (
         <>
-            <div className="mt-5">
+            <div className="mt-5 flex items-center gap-5">
                 <h2 className="text-xl font-semibold">{board.name}</h2>
+                <Link to="/boards" className={buttonVariants({ variant: "default" })}>
+                    Go back
+                </Link>
             </div>
 
             <div className={clsx("flex gap-4", "justify-center md:justify-start")}>
